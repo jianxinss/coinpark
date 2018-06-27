@@ -4283,3 +4283,9 @@ select.chosen {
 .mCSB_inside > .mCSB_container {
   margin-right: 0;
 }
+.bgm-coinpark {
+  background-color: #233e4d !important;
+}
+#toast-container > div {
+  opacity:1;
+}

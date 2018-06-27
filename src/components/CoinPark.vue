@@ -241,7 +241,11 @@
 				list: [],
 				currentPair: 'BIX_ETH',
 				working: false,
-				assets: {},
+				assets: {
+                    total_btc : 0,
+                    total_usd : 0,
+                    total_cny : 0,
+                },
 				market_list: [],
 				assets_list: [],
 				pending_list: [],
