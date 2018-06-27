@@ -2,6 +2,9 @@
 
 A simple web application for mining on [coinpack.cc](https://www.coinpark.cc/)
 
+![coinpark](https://github.com/jianxinss/coinpark/blob/master/snap.jpg?raw=true "coinpark,Social Coding")
+
+
 ## Useage
 
 ### （1）develop mod
