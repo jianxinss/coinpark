@@ -258,8 +258,8 @@
 
 				apikey: '',
 				secret: '',
-				minPrice: '',
-				maxPrice: '',
+				minPrice: 0,
+				maxPrice: 0,
 
 				tradeCoinCount: 1,
 				tradePairCount: 3, // 每次成交对数
@@ -411,6 +411,16 @@
 
 					if (me.currentTradePrice) {
 						console.info('currentTradePrice', me.currentTradePrice)
+
+                        var _maxPrice = parseFloat(me.maxPrice);
+                        var _minPrice = parseFloat(me.minPrice);
+                        var _currentTradePrice = parseFloat(me.currentTradePrice);
+
+                        if ( ( _maxPrice && _currentTradePrice > _maxPrice) || ( _minPrice &&  _currentTradePrice < _minPrice ) ) {
+							toastr.error('当前可成交价格不在设定的最高价与最低价之间，交易取消');
+							return;
+                        }
+
 						me.buyAndSell();
                     }
 
@@ -466,6 +476,7 @@
 				if (this.secret) {
 					this.getMarketAll();
 					this.getUserAssets();
+					this.getUserOrderHistory();
 				}
 			},
 
@@ -474,17 +485,18 @@
 				if (this.apikey) {
 					this.getMarketAll();
 					this.getUserAssets();
+					this.getUserOrderHistory();
                 }
 			},
 
 			minPrice(val) {
 				this.storage.setItem('minPrice', val);
-				this.minPrice = val;
+				this.minPrice = val || 0;
 			},
 
 			maxPrice(val) {
 				this.storage.setItem('maxPrice', val);
-				this.maxPrice = val;
+				this.maxPrice = val || 0;
 			},
 
 			tradePairCount(val) {
@@ -532,7 +544,7 @@
 
 			this.getUserAssets();
 			this.getUserOrderPending();
-			this.getUserOrderHistory('BIX_ETH');
+			this.getUserOrderHistory();
 			this.getMarketAll();
 		}
 	}
